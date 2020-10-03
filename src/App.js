@@ -1,6 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
 import Layout from './hoc/Layout/Layout';
-import BasketList from './containers/BurgerBuilder/BasketList';
 
 import Logout from './containers/Auth/Logout/Logout';
 
@@ -12,13 +11,10 @@ const Auth = React.lazy(() => {
   return import('./containers/Auth/Auth')
 })
 
-const Checkout = React.lazy(() => {
-  return import('./containers/Checkout/Checkout')
+const BasketList = React.lazy(() => {
+  return import('./containers/BasketList/BasketList')
 })
 
-const Orders = React.lazy(() => {
-  return import('./containers/Orders/Orders')
-})
 
 
 const App = (props) => {
@@ -30,16 +26,13 @@ const App = (props) => {
     let routes = (
       <Switch> 
         <Route path="/auth" render={(props) => <Auth {...props}/>}/>
-        <Route path="/" exact component={BasketList}/>
-        <Redirect to="/"/>
+        <Redirect to="/auth"/>
       </Switch>
     );
 
     if ( props.isAuthenticated ) {
       routes = (
         <Switch> 
-          <Route path="/checkout" render={(props) => <Checkout {...props}/>}/>
-          <Route path="/orders" render={(props) => <Orders {...props}/>}/>            
           <Route path="/logout" component={Logout}/>
           <Route path="/auth" render={(props) => <Auth {...props}/>}/>
           <Route path="/" exact component={BasketList}/>
