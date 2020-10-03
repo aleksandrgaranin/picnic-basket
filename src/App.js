@@ -50,7 +50,6 @@ const App = (props) => {
       </div>
     );
   
-  
 }
 
 const mapStateToProps = state => {

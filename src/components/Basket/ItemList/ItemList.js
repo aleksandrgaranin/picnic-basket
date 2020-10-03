@@ -27,7 +27,7 @@ const ItemList = props => {
         ))
     }
     return (
-        <div>
+        <div className={classes.ItemList}>
             {itemList}
         </div>
     );
