@@ -9,7 +9,10 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-import AddItem from '../../components/Basket/AddItem/AddItem'
+// Basket
+
+import AddItem from '../../components/Basket/AddItem/AddItem';
+import ItemList from '../../components/Basket/ItemList/ItemList';
 
 import * as actions from '../../store/actions/index';
 
@@ -97,7 +100,8 @@ const BurgerBuilder = props => {
         // );
         return (            
             <Aux>                
-                <AddItem></AddItem>                    
+                <AddItem></AddItem> 
+                <ItemList></ItemList>                   
             </Aux>
         );
 

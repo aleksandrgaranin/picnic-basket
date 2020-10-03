@@ -12,7 +12,6 @@ const AddItem = props => {
                 className = {classes.AddButton}>
                     Add Item
                 </batton>
-
             </div>
         </Aux>
     );
