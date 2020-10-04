@@ -1,7 +1,7 @@
 .AddItemModal {
-    margin: 5px auto;
-    width: 100%;
-    text-align: center;
+    margin: auto;
+    width: auto;
+    text-align: center;   
     padding: 10px;
     box-sizing: border-box;
 }
@@ -13,6 +13,6 @@
 
 @media (min-width: 600px) {
     .AddItemModal {
-        width: 500px;
+        width: auto;
     }
 }

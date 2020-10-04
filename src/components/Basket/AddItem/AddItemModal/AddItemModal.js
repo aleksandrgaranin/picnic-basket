@@ -8,6 +8,7 @@ import Spinner from '../../../UI/Spinner/Spinner';
 import classes from './AddItemModal.module.css';
 import * as actions from '../../../../store/actions/index';
 import { updateObject, checkValidity } from '../../../../shared/utility';
+import axios from '../../../../axios-orders';
 
 const AddItemModal = props => {
     const [controls, setControls] = useState({
@@ -37,14 +38,33 @@ const AddItemModal = props => {
                 minLength: 1
             },
             valid: false,
-            touched: false,
-            
+            touched: false,            
         }
     }); 
 
     const submitHandler = (event) => {
-        event.preventDefault();      
+        event.preventDefault();
+
+        const ItemFormData = {}
+        for (let formElementIdentifier in controls){
+            ItemFormData[formElementIdentifier] = controls[formElementIdentifier].value
+        }        
+        axios.post('/list/item.json', ItemFormData)
+            .then(response => {
+                console.log(response);               ;
+            })
+            // .catch(error => {
+            //     dispatch(fetchIngredientsFailed(error));
+            // });
+            
+        console.log("ItemFormData",ItemFormData)
+        
     }    
+
+
+   
+        
+   
 
     const inputChangedHandler = (event, controlName) => {
         const updatedControls = updateObject(controls, {
@@ -83,10 +103,10 @@ const AddItemModal = props => {
 
         return(
             <div className={classes.AddItemModal}>
-                <p>Add Item</p>
+                <p>ADD ITEM</p>
                 <form className={classes.Form} onSubmit={submitHandler}>
                     {form}
-                    <Button btnType="Success">Submit</Button>
+                    <Button btnType="Success" onSubmit={props.modalClosed}>Submit</Button>
                 </form>                
             </div>
         );
@@ -95,6 +115,7 @@ const AddItemModal = props => {
 
 const mapStateToProps = state => {
     return{
+        token: state.auth.token,
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,

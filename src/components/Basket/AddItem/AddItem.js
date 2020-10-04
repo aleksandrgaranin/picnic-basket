@@ -23,7 +23,7 @@ const AddItem = props => {
 
     if(showModal){
         modal = <Modal show={showModal} modalClosed={closeShowModalHandler}>
-            <AddItemModal/>
+            <AddItemModal modalClosed={closeShowModalHandler}/>
         </Modal>
     }
 
@@ -31,7 +31,7 @@ const AddItem = props => {
         <Aux >
             <div className={classes.BuildControls}>
                 <button
-                onClick = {showModalHandler}
+                onClick = {showModalHandler}                
                 className = {classes.AddButton}>
                     Add Item
                 </button>

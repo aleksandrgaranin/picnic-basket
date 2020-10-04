@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux'
 
 import axios from '../../../axios-orders';
@@ -12,23 +12,39 @@ import classes from './ItemList.module.css';
 
 
 const ItemList = props => {
-    const { onFetchOrder } = props;
-    useEffect(() => {
-        onFetchOrder(props.token, props.userId);
-    }, [onFetchOrder])
 
-    let itemList = <Spinner />;
-    if (!props.loading) {
-        itemList = props.orders.map(item => (
+    const [itemList, setitemList] = useState(null)
+    
+    useEffect(() => { 
+        axios.get('/list/item.json')
+            .then(res => {             
+                const fetchedList = []   
+                for(let key in res.data){
+                    fetchedList.push({
+                        ...res.data[key],
+                        id:key
+                    });
+                }
+                setitemList(fetchedList)
+            })
+        console.log(itemList)
+    },[])
+
+    let list = <Spinner />;
+    if (!props.loading && itemList) {
+        list = itemList.map(item => (
             <Item                         
                 key={item.id}
-                ingredients={item.ingredients}
-                price={item.price} />
+                name={item.name}
+                quantity={item.quantity}                                
+                />
         ))
     }
+    
+   
     return (
         <div className={classes.ItemList}>
-            {itemList}
+            {list}
         </div>
     );
 };
