@@ -43,7 +43,6 @@ const AddItemModal = props => {
     }); 
 
     const submitHandler = (event) => {
-        event.preventDefault();
 
         const ItemFormData = {}
         for (let formElementIdentifier in controls){
@@ -106,7 +105,7 @@ const AddItemModal = props => {
                 <p>ADD ITEM</p>
                 <form className={classes.Form} onSubmit={submitHandler}>
                     {form}
-                    <Button btnType="Success" onSubmit={props.modalClosed}>Submit</Button>
+                    <Button btnType="Success" >Submit</Button>
                 </form>                
             </div>
         );
