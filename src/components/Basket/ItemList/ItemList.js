@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import axios from '../../../axios-orders';
 import withErrorHendler from '../../../hoc/withErrorHandler/withErrorHandler';
 
+import Modal from '../../UI/Modal/Modal';
 import Item from './Item/Item';
 import Spinner from '../../UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
@@ -13,7 +14,8 @@ import classes from './ItemList.module.css';
 
 const ItemList = props => {
 
-    const [itemList, setItemList] = useState(null)
+    const [itemList, setItemList] = useState(null);
+    const [showItemDetails, setShowItemDetails] = useState(false);
 
    
     useEffect(() => { 
@@ -31,26 +33,37 @@ const ItemList = props => {
         console.log(itemList)
     },[])
 
-    const removeFromList = itemId => {
-        setItemList(prevItem => prevItem.filter(item => item.id !== itemId))
-        console.log(itemId)
+    const showDetailsHandler = () => {
+        setShowItemDetails(true);
+        };
+
+    const closeShowDetailsHandler=()=>{
+        setShowItemDetails(false);
+    }
+    
+    let detailModal = null;
+
+    if(showItemDetails){
+        detailModal = <Modal show={showItemDetails} closed={closeShowDetailsHandler} >
+            <p>DetailModal</p>
+        </Modal>
     }
 
     let list = <Spinner />;
     if (!props.loading && itemList) {        
         list = itemList.map(item => ( 
-            <section className={classes.IngredientList}>
-                <ul>  
-                    <li key={item.id} onClick={removeFromList.bind(this, item.id)}>
+            <section className={classes.IngredientList} key={item.id}>
+                <ul >  
+                    <li onClick={showDetailsHandler.bind(this, item.id)}>
                         <Item                         
                             key={item.id}
                             id={item.id}
                             name={item.name}
-                            quantity={item.quantity}
-                            onClick = {removeFromList.bind(item.id)}                           
-                        />    
+                            quantity={item.quantity}                    
+                            /> 
                     </li>
                 </ul>
+                {detailModal}   
             </section>
             
             
