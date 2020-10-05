@@ -41,8 +41,12 @@ const AddItemModal = props => {
             touched: false,            
         }
     }); 
+    const [showModal, setShowModal] = useState(props.show)
+    
+
 
     const submitHandler = (event) => {
+        event.preventDefault();
 
         const ItemFormData = {}
         for (let formElementIdentifier in controls){
@@ -50,7 +54,7 @@ const AddItemModal = props => {
         }        
         axios.post('/list/item.json', ItemFormData)
             .then(response => {
-                console.log(response);               ;
+                console.log(response); 
             })
             // .catch(error => {
             //     dispatch(fetchIngredientsFailed(error));
@@ -59,7 +63,6 @@ const AddItemModal = props => {
         console.log("ItemFormData",ItemFormData)
         
     }    
-
 
    
         
@@ -105,7 +108,7 @@ const AddItemModal = props => {
                 <p>ADD ITEM</p>
                 <form className={classes.Form} onSubmit={submitHandler}>
                     {form}
-                    <Button btnType="Success" >Submit</Button>
+                    <Button btnType="Success" onClick={() => {setShowModal(false)}}ed>Submit</Button>
                 </form>                
             </div>
         );
