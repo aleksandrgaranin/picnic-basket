@@ -12,8 +12,9 @@ const ItemDetail = props => {
                 <ul>
                 </ul>
                 <p><strong>Quantity: {props.quantity}</strong></p>
+                <p><strong>Price: ...</strong></p>
                 <p>You can update this Item</p>
-                <Button btnType="Danger" >CANCEL</Button>
+                <Button btnType="Danger"  clicked={props.closed}>PURCHASED</Button>
                 <Button btnType="Success" >UPDATE</Button>
             </div>
         )

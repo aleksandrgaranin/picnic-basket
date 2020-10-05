@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 import axios from '../../../axios-orders';
 import withErrorHendler from '../../../hoc/withErrorHandler/withErrorHandler';
 
-import Modal from '../../UI/Modal/Modal';
-// import ItemDetail from './ItemDetail/ItemDetail';
+
 import Item from './Item/Item';
 import Spinner from '../../UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
@@ -16,8 +15,7 @@ import classes from './ItemList.module.css';
 const ItemList = props => {
 
     const [itemList, setItemList] = useState(null);
-    const [showItemDetails, setShowItemDetails] = useState(false);
-
+ 
    
     useEffect(() => { 
         axios.get('/list/item.json')
@@ -33,44 +31,22 @@ const ItemList = props => {
             })
         console.log(itemList)
     },[])
-
-    const showDetailsHandler = () => {
-        setShowItemDetails(true);
-        };
-
-    const closeShowDetailsHandler=()=>{
-        setShowItemDetails(false);
-    }
     
-    // let detailModal = null;
-
-    // if(showItemDetails){
-    //     detailModal = <Modal show={showItemDetails} closed={closeShowDetailsHandler} >
-    //         <ItemDetail 
-    //             key={props.id}
-    //             id={props.id}
-    //             name={props.name}
-    //             quantity={props.quantity}  />
-    //     </Modal>
-    // }
-
+    
     let list = <Spinner />;
     if (!props.loading && itemList) {        
         list = itemList.map(item => ( 
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
-                    <li onClick={showDetailsHandler.bind(this, item.id)}>
+                    <li>
                         <Item                         
                             key={item.id}
                             id={item.id}
                             name={item.name}
-                            quantity={item.quantity}
-                            showDetails={showItemDetails}
-                            closed={closeShowDetailsHandler}                    
+                            quantity={item.quantity}                                    
                             /> 
                     </li>
                 </ul>
-                {/* {detailModal}    */}
             </section>
             
             
@@ -80,6 +56,7 @@ const ItemList = props => {
    
     return (
         <div className={classes.ItemList}>
+            <p style={{textAlign:'center'}}>Product List</p>
             {list}
         </div>
     );
