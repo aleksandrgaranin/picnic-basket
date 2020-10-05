@@ -5,6 +5,7 @@ import axios from '../../../axios-orders';
 import withErrorHendler from '../../../hoc/withErrorHandler/withErrorHandler';
 
 import Modal from '../../UI/Modal/Modal';
+// import ItemDetail from './ItemDetail/ItemDetail';
 import Item from './Item/Item';
 import Spinner from '../../UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
@@ -41,13 +42,17 @@ const ItemList = props => {
         setShowItemDetails(false);
     }
     
-    let detailModal = null;
+    // let detailModal = null;
 
-    if(showItemDetails){
-        detailModal = <Modal show={showItemDetails} closed={closeShowDetailsHandler} >
-            <p>DetailModal</p>
-        </Modal>
-    }
+    // if(showItemDetails){
+    //     detailModal = <Modal show={showItemDetails} closed={closeShowDetailsHandler} >
+    //         <ItemDetail 
+    //             key={props.id}
+    //             id={props.id}
+    //             name={props.name}
+    //             quantity={props.quantity}  />
+    //     </Modal>
+    // }
 
     let list = <Spinner />;
     if (!props.loading && itemList) {        
@@ -59,11 +64,13 @@ const ItemList = props => {
                             key={item.id}
                             id={item.id}
                             name={item.name}
-                            quantity={item.quantity}                    
+                            quantity={item.quantity}
+                            showDetails={showItemDetails}
+                            closed={closeShowDetailsHandler}                    
                             /> 
                     </li>
                 </ul>
-                {detailModal}   
+                {/* {detailModal}    */}
             </section>
             
             
