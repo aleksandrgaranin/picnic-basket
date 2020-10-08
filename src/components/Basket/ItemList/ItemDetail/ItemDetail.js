@@ -1,12 +1,14 @@
 import React from 'react';
+import Aux from '../../../../hoc/Aux/Aux'
 
 import Button from '../../../UI/Button/Button';
 
 
-const ItemDetail = props => {   
-       
+const ItemDetail = props => {     
+   
+    
         return (
-            <div>
+            <Aux>
                 <h3></h3>
                 <p>Product name: {props.name}</p>
                 <ul>
@@ -14,9 +16,9 @@ const ItemDetail = props => {
                 <p><strong>Quantity: {props.quantity}</strong></p>
                 <p><strong>Price: ...</strong></p>
                 <p>You can update this Item</p>
-                <Button btnType="Danger"  clicked={props.closed}>PURCHASED</Button>
+                <Button btnType="Danger" clicked={props.clicked}>PURCHASED</Button>
                 <Button btnType="Success" >UPDATE</Button>
-            </div>
+            </Aux>
         )
 };
 

@@ -41,12 +41,13 @@ const AddItemModal = props => {
             touched: false,            
         }
     }); 
+
+    const [formIsValid, setFormIsValid] = useState(false);
     
     
 
 
     const submitHandler = (event) => {
-        event.preventDefault();
 
         const ItemFormData = {}
         for (let formElementIdentifier in controls){
@@ -61,8 +62,7 @@ const AddItemModal = props => {
             //     dispatch(fetchIngredientsFailed(error));
             // });
             
-        console.log("ItemFormData",ItemFormData)
-        
+        console.log("ItemFormData",ItemFormData)    
         
     }    
 
@@ -78,7 +78,14 @@ const AddItemModal = props => {
                 touched: true
             })
         });
+        let formIsValid = true; // Over all validation
+        for (let inputIdentifier in updatedControls) {
+            formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+        }
+
+
         setControls(updatedControls);
+        setFormIsValid(formIsValid);
     }   
     
         const formElementsArrey = [];
@@ -110,7 +117,7 @@ const AddItemModal = props => {
                 <p>ADD ITEM</p>
                 <form className={classes.Form} onSubmit={submitHandler} >
                     {form}
-                    <Button btnType="Success" >Submit</Button>
+                    <Button btnType="Success" disabled={!formIsValid}>Submit</Button>
                 </form>                
             </div>
         );
