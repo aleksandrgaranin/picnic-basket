@@ -13,13 +13,18 @@ const ItemDetail = props => {
         </div>)
 
     if(props.show){
-        detail = (<div>
-                <p>Product name: {props.name}</p>            
-                <p><strong>Quantity: {props.quantity}</strong></p>
-                <p><strong>Price: ...</strong></p>
-                <p>You can update this Item</p>
-                <Button btnType="Danger" onClick={props.close}>PURCHASED</Button>
+        detail = (
+            <div>
+                <div>
+                    <p>Product name: {props.name}</p>            
+                    <p><strong>Quantity: {props.quantity}</strong></p>
+                    <p><strong>Price: ...</strong></p>
+                    <p>You can update this Item</p>
+                </div>
+                <Button btnType="Warning" >PURCHESAD</Button>
                 <Button btnType="Success" >UPDATE</Button>
+                <Button btnType="Danger" >DELETE</Button>
+
             </div>  
         )
     }
