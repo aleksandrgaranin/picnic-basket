@@ -1,0 +1,4 @@
+.ItemDetails {
+    display: flex;
+    justify-content: space-between;    
+}

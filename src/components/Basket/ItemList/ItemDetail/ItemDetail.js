@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+
+import React from 'react';
 import Aux from '../../../../hoc/Aux/Aux'
+import classes from './ItemDetail.module.css';
 
 import Button from '../../../UI/Button/Button';
 
@@ -7,24 +9,24 @@ import Button from '../../../UI/Button/Button';
 const ItemDetail = props => {   
 
     let detail = 
-        (<div>
-            <p>Product name: {props.name}</p> 
+        (<div className={classes.ItemDetails}>
+            <p>{props.name}</p> 
             <p><strong>Quantity: {props.quantity}</strong></p>
         </div>)
 
     if(props.show){
         detail = (
             <div>
-                <div>
+                <div className={classes.ItemDetails}>
                     <p>Product name: {props.name}</p>            
                     <p><strong>Quantity: {props.quantity}</strong></p>
                     <p><strong>Price: ...</strong></p>
-                    <p>You can update this Item</p>
                 </div>
-                <Button btnType="Warning" >PURCHESAD</Button>
-                <Button btnType="Success" >UPDATE</Button>
-                <Button btnType="Danger" >DELETE</Button>
+                    <p>You can update this Item</p>
 
+                <Button btnType="Warning" >PURCHASED</Button>
+                <Button btnType="Success" >UPDATE</Button>
+                <Button btnType="Danger" clicked={props.delete} >DELETE</Button>
             </div>  
         )
     }

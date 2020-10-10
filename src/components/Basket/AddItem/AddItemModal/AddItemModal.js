@@ -54,7 +54,7 @@ const AddItemModal = props => {
         for (let formElementIdentifier in controls){
             ItemFormData[formElementIdentifier] = controls[formElementIdentifier].value
         }        
-        axios.post('/list/item.json', ItemFormData)
+        axios.post('/list/item.json?auth=' + props.token, ItemFormData)
             .then(response => {
                 console.log(response);
                 props.closed(); 

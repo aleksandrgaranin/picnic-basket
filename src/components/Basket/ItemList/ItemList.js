@@ -18,7 +18,7 @@ const ItemList = props => {
  
    
     useEffect(() => { 
-        axios.get('/list/item.json')
+        axios.get('/list/item.json?auth=' + props.token)
             .then(res => {             
                 const fetchedList = []   
                 for(let key in res.data){
@@ -39,7 +39,8 @@ const ItemList = props => {
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>
-                        <Item                         
+                        <Item  
+                            {...props}                       
                             key={item.id}
                             id={item.id}
                             name={item.name}
