@@ -28,9 +28,21 @@ const ItemList = props => {
                     });
                 }
                 setItemList(fetchedList)
+                console.log(itemList)
             })
-        console.log(itemList)
     },[])
+
+    const deletePostHandler =(id)=> {
+        axios.delete(`/list/item/${id}.json?auth=` + props.token)
+            .then(response => {
+                console.log(response)
+                const updatedItems = [...itemList]
+                updatedItems.splice(id,1);
+                setItemList(updatedItems);
+        });
+    }
+    
+    
     
     
     let list = <Spinner />;
@@ -44,7 +56,8 @@ const ItemList = props => {
                             key={item.id}
                             id={item.id}
                             name={item.name}
-                            quantity={item.quantity}                                    
+                            quantity={item.quantity}
+                            deletePost={deletePostHandler.bind(this, item.id)}                                   
                         /> 
                     </li>
                 </ul>

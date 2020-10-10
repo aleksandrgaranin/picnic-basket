@@ -16,13 +16,6 @@ const Item = (props) => {
         setShowDetails(!showDetails)
     }
 
-    const deletePostHandler =()=> {
-        axios.delete(`/list/item/${props.id}.json?auth=` + props.token)
-            .then(response => {
-                 console.log(response)
-            });
-    }
-    
     
     return(
         <Aux >
@@ -33,7 +26,7 @@ const Item = (props) => {
                     name={props.name}
                     quantity={props.quantity}
                     show = {showDetails}
-                    delete = {deletePostHandler}   
+                    delete = {props.deletePost}   
                 />
                 <Button btnType="Success" clicked = {showDetatilsHandler}>{!showDetails ? <p>MORE DETAILS</p> : <p>LESS DETAILS</p>}</Button>      
             </div>

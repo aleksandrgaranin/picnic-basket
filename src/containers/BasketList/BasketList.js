@@ -1,9 +1,8 @@
-import React,{ useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import axios from '../../axios-orders';
 import Aux from '../../hoc/Aux/Aux';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import Spinner from '../../components/UI/Spinner/Spinner';
 
 // Basket
 

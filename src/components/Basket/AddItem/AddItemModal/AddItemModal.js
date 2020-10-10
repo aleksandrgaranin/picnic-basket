@@ -57,7 +57,7 @@ const AddItemModal = props => {
         axios.post('/list/item.json?auth=' + props.token, ItemFormData)
             .then(response => {
                 console.log(response);
-                props.closed(); 
+                props.closed();
             })
             // .catch(error => {
             //     dispatch(fetchIngredientsFailed(error));
