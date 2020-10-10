@@ -22,9 +22,7 @@ const Item = (props) => {
             <div className={classes.Item} >                
                 <ItemDetail 
                     key={props.id}
-                    id={props.id}
-                    name={props.name}
-                    quantity={props.quantity}
+                    {...props}
                     show = {showDetails}
                     delete = {props.deletePost}   
                 />

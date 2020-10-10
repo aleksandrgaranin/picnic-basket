@@ -39,7 +39,35 @@ const AddItemModal = props => {
             },
             valid: false,
             touched: false,            
-        }
+        },
+        price: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'price',
+                placeholder: 'Possible Price'
+            },
+            value: '',
+            validation: {
+                required: true,
+                minLength: 2
+            },
+            valid: false,
+            touched: false,            
+        },
+        note: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text ',
+                placeholder: 'Some Notes'
+            },
+            value: '',
+            validation: {
+                required: true,
+                minLength: 6
+            },
+            valid: false,
+            touched: false,            
+        },
     }); 
 
     const [formIsValid, setFormIsValid] = useState(false);

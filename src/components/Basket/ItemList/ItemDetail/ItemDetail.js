@@ -18,11 +18,11 @@ const ItemDetail = props => {
         detail = (
             <div>
                 <div className={classes.ItemDetails}>
-                    <p>Product name: {props.name}</p>            
+                    <p>Product: {props.name}</p>            
                     <p><strong>Quantity: {props.quantity}</strong></p>
-                    <p><strong>Price: ...</strong></p>
+                    <p><strong>Price: ${props.price}</strong></p>
                 </div>
-                    <p>You can update this Item</p>
+                <p>NOTE:  {props.note}</p>
 
                 <Button btnType="Warning" >PURCHASED</Button>
                 <Button btnType="Success" >UPDATE</Button>

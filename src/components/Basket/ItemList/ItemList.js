@@ -51,12 +51,13 @@ const ItemList = props => {
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>
-                        <Item  
-                            {...props}                       
+                        <Item                       
                             key={item.id}
                             id={item.id}
                             name={item.name}
                             quantity={item.quantity}
+                            price={item.price}
+                            note={item.note}
                             deletePost={deletePostHandler.bind(this, item.id)}                                   
                         /> 
                     </li>
