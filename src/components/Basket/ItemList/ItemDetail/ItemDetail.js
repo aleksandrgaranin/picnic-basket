@@ -19,16 +19,16 @@ const ItemDetail = props => {
             <div>
                 <div className={classes.ItemDetails}>
                     <p>Product: {props.name}</p>            
-                    <p><strong>Quantity: {props.quantity}</strong></p>
-                    <p><strong>Price: ${props.price}</strong></p>
+                    <p>Quantity: {props.quantity}</p>
+                    <p>Price: ${props.price}</p>
                 </div>
                 <div className={classes.ItemDetails}>
                     <p>NOTE:  {props.note}</p>
                 </div>
                 <hr/>
                 <div className={classes.ItemDetails}>
-                    <Button btnType="Warning" >PURCHASED</Button>
-                    <Button btnType="Success" >UPDATE</Button>
+                    <Button btnType="Warning" disabled={true}>PURCHASED</Button>
+                    <Button btnType="Success" disabled={true}>UPDATE</Button>
                     <Button btnType="Danger" clicked={props.delete} >DELETE</Button>                    
                 </div>
                 <hr/>

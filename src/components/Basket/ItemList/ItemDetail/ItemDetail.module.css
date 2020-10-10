@@ -2,5 +2,14 @@
     display: flex;
     justify-content: space-between;
     margin: 0 15px 0 15px;
+    padding: 5px;
+    
+}
+
+.ItemDetails p{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 10px;
     
 }
