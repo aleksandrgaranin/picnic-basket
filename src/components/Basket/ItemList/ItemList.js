@@ -44,7 +44,7 @@ const ItemList = props => {
                             id={item.id}
                             name={item.name}
                             quantity={item.quantity}                                    
-                            /> 
+                        /> 
                     </li>
                 </ul>
             </section>

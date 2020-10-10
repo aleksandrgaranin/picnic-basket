@@ -48,6 +48,7 @@ const AddItemModal = props => {
 
 
     const submitHandler = (event) => {
+        event.preventDefault();
 
         const ItemFormData = {}
         for (let formElementIdentifier in controls){

@@ -4,36 +4,27 @@ import ItemDetail from '../ItemDetail/ItemDetail';
 import Modal from '../../../UI/Modal/Modal';
 import Aux from '../../../../hoc/Aux/Aux';
 
-const Item = (props) => {
-   
-    const [showItemDetails, setShowItemDetails] = useState(false);
+const Item = (props) => {     
+    const [showDetails, setShowDetails] = useState(false)
 
-    const showDetailsHandler = () => {
-        setShowItemDetails(true);
-    };
-    
-    const closeShowModalHandler = (showItemDetails) =>{
-        setShowItemDetails(!showItemDetails);
+
+    const showDetatilsHandler = () => {
+        setShowDetails(!showDetails)
     }
 
 
-    let detailModal = null;
 
-    if(showItemDetails){
-        detailModal = <Modal show={showItemDetails} closed={closeShowModalHandler} >
-            <ItemDetail {...props}
-                key={props.id}
-                id={props.id}
-                name={props.name}
-                quantity={props.quantity}                  
-                closed={closeShowModalHandler}/>
-            </Modal>
-    }
     return(
         <Aux >
-            <div className={classes.Item} onClick = {showDetailsHandler} >
-                <p>{props.name} Qty: <strong>{props.quantity}</strong></p>
-                {detailModal}
+            <div className={classes.Item} onClick = {showDetatilsHandler}>
+                <ItemDetail {...props}
+                    key={props.id}
+                    id={props.id}
+                    name={props.name}
+                    quantity={props.quantity}
+                    show = {showDetails}                   
+                                     
+                />      
             </div>
         </Aux >
     );
