@@ -82,7 +82,11 @@ const AddItemModal = props => {
         for (let formElementIdentifier in controls){
             ItemFormData[formElementIdentifier] = controls[formElementIdentifier].value
         }        
-        axios.post('/list/item.json?auth=' + props.token, ItemFormData)
+        const item = {
+            itemData: ItemFormData,
+            userId: props.userId
+        }
+        axios.post('/list.json?auth=' + props.token, item)
             .then(response => {
                 console.log(response);
                 props.closed();
@@ -91,7 +95,7 @@ const AddItemModal = props => {
             //     dispatch(fetchIngredientsFailed(error));
             // });
             
-        console.log("ItemFormData",ItemFormData)    
+        console.log("ItemFormData",item)    
         
     }    
 
@@ -160,7 +164,8 @@ const mapStateToProps = state => {
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
         buildingBurger: state.bbr.building,
-        authRedirectPath: state.auth.authRedirectPath
+        authRedirectPath: state.auth.authRedirectPath,
+        userId: state.auth.userId
     }
 }
 

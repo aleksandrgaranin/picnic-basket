@@ -22,11 +22,16 @@ const ItemDetail = props => {
                     <p><strong>Quantity: {props.quantity}</strong></p>
                     <p><strong>Price: ${props.price}</strong></p>
                 </div>
-                <p>NOTE:  {props.note}</p>
-
-                <Button btnType="Warning" >PURCHASED</Button>
-                <Button btnType="Success" >UPDATE</Button>
-                <Button btnType="Danger" clicked={props.delete} >DELETE</Button>
+                <div className={classes.ItemDetails}>
+                    <p>NOTE:  {props.note}</p>
+                </div>
+                <hr/>
+                <div className={classes.ItemDetails}>
+                    <Button btnType="Warning" >PURCHASED</Button>
+                    <Button btnType="Success" >UPDATE</Button>
+                    <Button btnType="Danger" clicked={props.delete} >DELETE</Button>                    
+                </div>
+                <hr/>
             </div>  
         )
     }

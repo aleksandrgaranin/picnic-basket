@@ -18,7 +18,8 @@ const ItemList = props => {
  
    
     useEffect(() => { 
-        axios.get('/list/item.json?auth=' + props.token)
+        const queryParams = '?auth=' + props.token + '&orderBy="userId"&equalTo="' + props.userId + '"'
+        axios.get('/list.json'+ queryParams)
             .then(res => {             
                 const fetchedList = []   
                 for(let key in res.data){
@@ -33,7 +34,7 @@ const ItemList = props => {
     },[])
 
     const deletePostHandler =(id)=> {
-        axios.delete(`/list/item/${id}.json?auth=` + props.token)
+        axios.delete(`/list/${id}.json?auth=` + props.token)
             .then(response => {
                 console.log(response)
                 const updatedItems = [...itemList]
@@ -54,10 +55,10 @@ const ItemList = props => {
                         <Item                       
                             key={item.id}
                             id={item.id}
-                            name={item.name}
-                            quantity={item.quantity}
-                            price={item.price}
-                            note={item.note}
+                            name={item.itemData.name}
+                            quantity={item.itemData.quantity}
+                            price={item.itemData.price}
+                            note={item.itemData.note}
                             deletePost={deletePostHandler.bind(this, item.id)}                                   
                         /> 
                     </li>
