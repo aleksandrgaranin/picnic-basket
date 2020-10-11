@@ -20,7 +20,7 @@ export const checkValidity = ( value, rules ) => {
     }
 
     if (rules.maxLength) {
-        isValid = value.length <= rules.maxLength &&isValid;
+        isValid = value.length <= rules.maxLength && isValid;
     }
     
     if (rules.isEmail){

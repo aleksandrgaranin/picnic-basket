@@ -21,7 +21,8 @@ const AddItemModal = props => {
             value: '',
             validation: {
                 required: true,
-                minLength: 3
+                minLength: 3,
+                maxLength: 100
             },
             valid: false,
             touched: false
@@ -35,7 +36,8 @@ const AddItemModal = props => {
             value: '',
             validation: {
                 required: true,
-                minLength: 1
+                minLength: 1,
+                maxLength: 100
             },
             valid: false,
             touched: false,            
@@ -49,7 +51,8 @@ const AddItemModal = props => {
             value: '',
             validation: {
                 required: true,
-                minLength: 2
+                minLength: 2,
+                maxLength: 100
             },
             valid: false,
             touched: false,            
@@ -63,7 +66,8 @@ const AddItemModal = props => {
             value: '',
             validation: {
                 required: true,
-                minLength: 6
+                minLength: 6,
+                maxLength: 300
             },
             valid: false,
             touched: false,            
