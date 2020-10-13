@@ -35,17 +35,17 @@ const ItemList = props => {
             })
     },[])
 
-    const deletePostHandler =(id)=> {
+    const deletePostHandler =(id, index)=> {
         axios.delete(`/list/${id}.json?auth=` + props.token)
             .then(response => {
                 console.log(response)
                 const updatedItems = [...itemList]
-                updatedItems.splice(id,1);
+                updatedItems.splice(index,1);
                 setItemList(updatedItems);
         });
     }
     
-    const purchasedHandler = (identifier) => { 
+    const purchasedHandler = (identifier, index) => { 
         let updatedItem = {}
         const updatedItemList = [...itemList]
         for( let id in updatedItemList){
@@ -63,7 +63,7 @@ const ItemList = props => {
             .then(response => { 
                 console.log(response)
                 const updatedItems = [...itemList]
-                updatedItems.splice(identifier,1);
+                updatedItems.splice(index,1);
                 setItemList(updatedItems);                      
             })
 
@@ -74,7 +74,7 @@ const ItemList = props => {
     
     let list = <Spinner />;
     if (!props.loading && itemList) {        
-        list = itemList.map(item => ( 
+        list = itemList.map((item, index) => ( 
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>
@@ -86,8 +86,8 @@ const ItemList = props => {
                             price={item.itemData.price}
                             note={item.itemData.note}
                             purchased={item.purchased}
-                            deletePost={deletePostHandler.bind(this, item.id)}
-                            purchaseItem={purchasedHandler.bind(this, item.id)}                                   
+                            deletePost={deletePostHandler.bind(this, item.id, index)}
+                            purchaseItem={purchasedHandler.bind(this, item.id, index)}                                   
                         /> 
                     </li>
                 </ul>
