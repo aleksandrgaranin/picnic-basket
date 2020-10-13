@@ -11,8 +11,7 @@ const ItemDetail = props => {
     let detail = 
         (<div className={classes.ItemDetails}>
             <p style={{color:"blueviolet"}}>{props.name}</p>           
-        </div>)
-    
+        </div>)    
     let purchased = null;
 
     if(props.purchased){
@@ -22,8 +21,6 @@ const ItemDetail = props => {
             </div>
         )
     }
-
-
     if(props.show){
         detail = (
             <div>
@@ -37,17 +34,15 @@ const ItemDetail = props => {
                 </div>
                 {purchased}
                 <hr/>
-
-                <div className={classes.ItemDetails}>
-                    <Button btnType="Warning" clicked={props.purchaseItem}>PURCHASED</Button>
-                    <Button btnType="Success" disabled={true}>UPDATE</Button>
-                    <Button btnType="Danger" clicked={props.delete} >DELETE</Button>                    
+                <div className = {classes.Buttons}>
+                    <Button btnType="Warning" clicked={props.purchaseItem}> PURCHASED </Button>
+                    <Button btnType="Success" disabled={true}> UPDATE </Button>
+                    <Button btnType="Danger" clicked={props.delete}> DELETE </Button>                    
                 </div>
                 <hr/>
             </div>  
         )
     }
-
     return (
         <Aux>
             {detail}

@@ -15,7 +15,7 @@ import * as actions from '../../store/actions/index';
 const BurgerBuilder = props => {
     return (            
         <Aux>                
-            <AddItem/>                
+            {/* <AddItem />                 */}
             <ItemList/>                   
         </Aux>
     );   

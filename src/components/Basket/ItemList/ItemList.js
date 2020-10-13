@@ -39,8 +39,9 @@ const ItemList = props => {
             .catch(error => {
                 setLoading(true);
             });
+        
     },[])
-
+        
     const deletePostHandler =(id, index)=> {
         
         axios.delete(`/list/${id}.json?auth=` + props.token)
@@ -74,7 +75,7 @@ const ItemList = props => {
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
                 setItemList(updatedItems);   
-                setLoading(false); 
+                setLoading(false);                 
             })
             .catch(error => {
                 setLoading(true);
@@ -102,8 +103,6 @@ const ItemList = props => {
                     </li>
                 </ul>
             </section>
-            
-            
         ))
     }
     

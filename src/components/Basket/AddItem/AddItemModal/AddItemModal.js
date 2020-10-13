@@ -58,9 +58,9 @@ const AddItemModal = props => {
             touched: false,            
         },
         note: {
-            elementType: 'input',
+            elementType: 'textarea',
             elementConfig: {
-                type: 'text ',
+                type: 'textarea',
                 placeholder: 'Some Notes'
             },
             value: '',
@@ -96,8 +96,9 @@ const AddItemModal = props => {
         }
         axios.post('/list.json?auth=' + props.token, item)
             .then(response => {      
-                props.closed()          
+                // props.closed()          
                 setLoading(false);
+                props.history.push("/")
             })
             .catch(error => {
                 setLoading(true);

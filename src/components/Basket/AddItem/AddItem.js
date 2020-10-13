@@ -10,30 +10,29 @@ import classes from './AddItem.module.css';
 const AddItem = props => {
     const [showModal, setShowModal] = useState(false);
 
-    const showModalHandler=()=>{
+    const showModalHandler = () => {
         setShowModal(true);
     }
 
-    const closeShowModalHandler=()=>{
+    const closeShowModalHandler = () => {
         setShowModal(false);
     }
-
     
     let modal = null;
 
     if(showModal){
         modal = <Modal show={showModal} closed={closeShowModalHandler} >
-            <AddItemModal closed={closeShowModalHandler}/>
+            <AddItemModal  closed={closeShowModalHandler}/>
         </Modal>
     }
 
     return (
         <Aux >
             <div className={classes.BuildControls}>
-                <button
-                onClick = {showModalHandler}                
-                className = {classes.AddButton}>
-                    Add Item
+                <button link="/add"
+                    onClick = {showModalHandler}                
+                    className = {classes.AddButton}>
+                        Add Item
                 </button>
                 {modal}
             </div>
