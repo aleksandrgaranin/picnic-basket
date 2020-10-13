@@ -105,12 +105,13 @@ const ItemList = props => {
             </section>
         ))
     }
-    
-   
+    let informationOrList = <p style={{textAlign:'center', color:"blueviolet"}}>List is Empty </p>
+    if (itemList && itemList.length > 0){        
+        informationOrList  = list 
+    }
     return (
-        <div className={classes.ItemList}>
-            <p style={{textAlign:'center'}}>Product List</p>
-            {list}
+        <div className={classes.ItemList}> 
+            {informationOrList } 
         </div>
     );
 };
