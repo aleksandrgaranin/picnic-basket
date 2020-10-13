@@ -97,9 +97,7 @@ const ContactData = props => {
             },        
     });
 
-
     const [formIsValid, setFormIsValid] = useState(false);
-
    
     const orderHendler = (event) => {
         event.preventDefault(); //important this line prevent reloading the page
@@ -112,7 +110,7 @@ const ContactData = props => {
             ingredients: props.ing,
             price: props.price,
             orderData: formData,
-            userId: props.userId
+            userId: props.userId,
         }
 
         props.onOrderBurger(order, props.token)

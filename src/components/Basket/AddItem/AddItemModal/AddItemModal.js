@@ -75,10 +75,8 @@ const AddItemModal = props => {
     }); 
 
     const [formIsValid, setFormIsValid] = useState(false);
+    const [purchased, setPurchased] = useState(false);
     
-    
-
-
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -88,7 +86,8 @@ const AddItemModal = props => {
         }        
         const item = {
             itemData: ItemFormData,
-            userId: props.userId
+            userId: props.userId,
+            purchased: purchased
         }
         axios.post('/list.json?auth=' + props.token, item)
             .then(response => {

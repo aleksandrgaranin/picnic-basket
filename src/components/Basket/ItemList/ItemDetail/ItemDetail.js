@@ -13,6 +13,17 @@ const ItemDetail = props => {
             <p>{props.name}</p> 
             <p><strong>Quantity: {props.quantity}</strong></p>
         </div>)
+    
+    let purchased = null;
+
+    if(props.purchased){
+        purchased = (
+            <div>
+                <p style={{color:"red", textAlign: "center"}}>PURCHASED</p>
+            </div>
+        )
+    }
+
 
     if(props.show){
         detail = (
@@ -25,9 +36,11 @@ const ItemDetail = props => {
                 <div className={classes.ItemDetails}>
                     <p>NOTE:  {props.note}</p>
                 </div>
+                {purchased}
                 <hr/>
+
                 <div className={classes.ItemDetails}>
-                    <Button btnType="Warning" disabled={true}>PURCHASED</Button>
+                    <Button btnType="Warning" clicked={props.purchaseItem}>PURCHASED</Button>
                     <Button btnType="Success" disabled={true}>UPDATE</Button>
                     <Button btnType="Danger" clicked={props.delete} >DELETE</Button>                    
                 </div>

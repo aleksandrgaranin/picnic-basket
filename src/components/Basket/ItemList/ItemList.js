@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Children, useEffect, useState} from 'react';
 import { connect } from 'react-redux'
 
 import axios from '../../../axios-orders';
@@ -8,6 +8,7 @@ import withErrorHendler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Item from './Item/Item';
 import Spinner from '../../UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
+import { updateObject } from '../../../shared/utility';
 
 import classes from './ItemList.module.css';
 
@@ -43,7 +44,32 @@ const ItemList = props => {
         });
     }
     
-    
+    const purchasedHandler = (identifier) => { 
+        let updatedItem = {}
+        const updatedItemList = [...itemList]
+        for( let id in updatedItemList){
+            if (updatedItemList[id].id === identifier){
+                updatedItem = {
+                    itemData: updatedItemList[id].itemData,
+                    purchased: !updatedItemList[id].purchased,
+                    userId: updatedItemList[id].userId
+                }
+            } 
+        }
+        console.log(updatedItem)       
+        
+        axios.put(`/list/${identifier}.json?auth=` + props.token, updatedItem)
+            .then(response => { 
+                console.log(response.data)                
+            })
+        
+        // const updatedItemList = updateObject(itemList[inputIdentifier], {
+        //     purchased: true     
+        // });
+
+        setItemList(updatedItemList);        
+        console.log(itemList)
+    }
     
     
     let list = <Spinner />;
@@ -59,7 +85,9 @@ const ItemList = props => {
                             quantity={item.itemData.quantity}
                             price={item.itemData.price}
                             note={item.itemData.note}
-                            deletePost={deletePostHandler.bind(this, item.id)}                                   
+                            purchased={item.purchased}
+                            deletePost={deletePostHandler.bind(this, item.id)}
+                            purchaseItem={purchasedHandler.bind(this, item.id)}                                   
                         /> 
                     </li>
                 </ul>
