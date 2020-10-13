@@ -15,6 +15,7 @@ import classes from './PurchasedItems.module.css';
 const PurchasedItems = props => {
 
     const [itemList, setItemList] = useState(null);
+    const [loading, setLoading] = useState(true)
  
    
     useEffect(() => { 
@@ -31,22 +32,29 @@ const PurchasedItems = props => {
                     }
                 }
                 setItemList(fetchedList)
-                console.log(itemList)
+                setLoading(false);
             })
+            .catch(error => {
+                setLoading(true);
+            });
     },[])
 
     const deletePostHandler = (id, index)=> {
+        setLoading(true);
         axios.delete(`/list/${id}.json?auth=` + props.token)
             .then(response => {
-                console.log(index)
-                console.log(response)
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
-                setItemList(updatedItems);
+                setItemList(updatedItems)
+                setLoading(false)            
+            })
+            .catch(error => {
+                setLoading(true);
         });
     }
     
     const purchasedHandler = (identifier, index) => { 
+        setLoading(true);
         let updatedItem = {}
         const updatedItemList = [...itemList]
         for( let id in updatedItemList){
@@ -58,23 +66,24 @@ const PurchasedItems = props => {
                 }
             }
         }
-        console.log(updatedItem)       
         
         axios.put(`/list/${identifier}.json?auth=` + props.token, updatedItem)
             .then(response => { 
-                console.log(response)
-                console.log(index)
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
-                setItemList(updatedItems);                
+                setItemList(updatedItems);  
+                setLoading(false);              
             })
+            .catch(error => {
+                setLoading(true);
+            });
        
     }
     
     
     let list = <Spinner />;
-    if (!props.loading && itemList) {        
-        list = itemList.map((item,index) => ( 
+    if (!loading && itemList) {        
+        list = itemList.map((item, index) => ( 
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>

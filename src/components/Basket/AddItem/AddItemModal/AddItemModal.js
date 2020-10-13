@@ -91,14 +91,12 @@ const AddItemModal = props => {
         }
         axios.post('/list.json?auth=' + props.token, item)
             .then(response => {
-                console.log(response);
                 props.closed();
             })
             // .catch(error => {
             //     dispatch(fetchIngredientsFailed(error));
             // });
             
-        console.log("ItemFormData", item)    
         
     }    
 

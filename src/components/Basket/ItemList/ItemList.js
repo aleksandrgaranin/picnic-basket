@@ -15,10 +15,12 @@ import classes from './ItemList.module.css';
 const ItemList = props => {
 
     const [itemList, setItemList] = useState(null);
+    const [loading, setLoading] = useState(true)
  
    
     useEffect(() => { 
         const queryParams = '?auth=' + props.token + '&orderBy="userId"&equalTo="' + props.userId + '"'
+        
         axios.get('/list.json'+ queryParams)
             .then(res => {             
                 const fetchedList = []   
@@ -31,21 +33,30 @@ const ItemList = props => {
                     }
                 }
                 setItemList(fetchedList)
-                console.log(itemList)
+                setLoading(false);
+                
             })
+            .catch(error => {
+                setLoading(true);
+            });
     },[])
 
     const deletePostHandler =(id, index)=> {
+        
         axios.delete(`/list/${id}.json?auth=` + props.token)
             .then(response => {
-                console.log(response)
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
                 setItemList(updatedItems);
-        });
+                
+            })
+            .catch(error => {
+                setLoading(true);
+            });
     }
     
     const purchasedHandler = (identifier, index) => { 
+        setLoading(true);
         let updatedItem = {}
         const updatedItemList = [...itemList]
         for( let id in updatedItemList){
@@ -57,23 +68,22 @@ const ItemList = props => {
                 }
             }
         }
-        console.log(updatedItem)       
         
         axios.put(`/list/${identifier}.json?auth=` + props.token, updatedItem)
             .then(response => { 
-                console.log(response)
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
-                setItemList(updatedItems);                      
+                setItemList(updatedItems);   
+                setLoading(false); 
             })
-
-        setItemList(updatedItemList);        
-        console.log(itemList)
+            .catch(error => {
+                setLoading(true);
+            });
     }
     
     
     let list = <Spinner />;
-    if (!props.loading && itemList) {        
+    if (!loading && itemList) {        
         list = itemList.map((item, index) => ( 
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
