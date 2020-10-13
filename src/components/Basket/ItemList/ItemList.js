@@ -61,7 +61,10 @@ const ItemList = props => {
         
         axios.put(`/list/${identifier}.json?auth=` + props.token, updatedItem)
             .then(response => { 
-                console.log(response.data)                
+                console.log(response)
+                const updatedItems = [...itemList]
+                updatedItems.splice(identifier,1);
+                setItemList(updatedItems);                      
             })
 
         setItemList(updatedItemList);        
