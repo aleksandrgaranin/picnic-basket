@@ -10,8 +10,7 @@ const ItemDetail = props => {
 
     let detail = 
         (<div className={classes.ItemDetails}>
-            <p>{props.name}</p> 
-            <p><strong>Quantity: {props.quantity}</strong></p>
+            <p style={{color:"blueviolet"}}>{props.name}</p>           
         </div>)
     
     let purchased = null;
@@ -29,11 +28,11 @@ const ItemDetail = props => {
         detail = (
             <div>
                 <div className={classes.ItemDetails}>
-                    <p>Product: {props.name}</p>            
-                    <p>Quantity: {props.quantity}</p>
+                    <p style={{color:"blueviolet"}}>Name: {props.name}</p>            
                     <p>Price: ${props.price}</p>
+                    <p>Qty: {props.quantity}</p>
                 </div>
-                <div className={classes.ItemDetails}>
+                <div className = {classes.ItemDetails}>
                     <p>NOTE:  {props.note}</p>
                 </div>
                 {purchased}

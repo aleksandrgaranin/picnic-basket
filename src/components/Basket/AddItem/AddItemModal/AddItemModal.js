@@ -76,10 +76,15 @@ const AddItemModal = props => {
 
     const [formIsValid, setFormIsValid] = useState(false);
     const [purchased, setPurchased] = useState(false);
+    const [loading, setLoading] = useState(true)
+    
+    useEffect(()=> {
+        setLoading(false)
+    },[])
     
     const submitHandler = (event) => {
         event.preventDefault();
-
+        setLoading(true);
         const ItemFormData = {}
         for (let formElementIdentifier in controls){
             ItemFormData[formElementIdentifier] = controls[formElementIdentifier].value
@@ -90,18 +95,16 @@ const AddItemModal = props => {
             purchased: purchased
         }
         axios.post('/list.json?auth=' + props.token, item)
-            .then(response => {
-                props.closed();
+            .then(response => {      
+                props.closed()          
+                setLoading(false);
             })
-            // .catch(error => {
-            //     dispatch(fetchIngredientsFailed(error));
-            // });
-            
-        
+            .catch(error => {
+                setLoading(true);
+            });
+                   
     }    
-
-   
-        
+ 
    
 
     const inputChangedHandler = (event, controlName) => {
@@ -151,7 +154,7 @@ const AddItemModal = props => {
                 <p>ADD ITEM</p>
                 <form className={classes.Form} onSubmit={submitHandler} >
                     {form}
-                    <Button btnType="Success" disabled={!formIsValid}>Submit</Button>
+                    <Button btnType="Success" disabled={!formIsValid} >Submit</Button>
                 </form>                
             </div>
         );

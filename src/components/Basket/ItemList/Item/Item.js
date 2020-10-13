@@ -24,14 +24,13 @@ const Item = (props) => {
                     key={props.id}
                     {...props}
                     show = {showDetails}
-                    delete = {props.deletePost}   
+                    delete = {props.deletePost}
                 />
-                <Button btnType="Success" clicked = {showDetatilsHandler}>{!showDetails ? <p>MORE DETAILS</p> : <p>LESS DETAILS</p>}</Button>      
+                <Button btnType="Success" clicked = {showDetatilsHandler}> {!showDetails ? <p>MORE DETAILS</p> : <p>LESS DETAILS</p>}</Button>      
             </div>
         </Aux >
     );
 }
-
 
 const mapStateToProps = state => {
     return{

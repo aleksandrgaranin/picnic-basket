@@ -18,12 +18,12 @@ const AddItem = props => {
         setShowModal(false);
     }
 
-
+    
     let modal = null;
 
     if(showModal){
         modal = <Modal show={showModal} closed={closeShowModalHandler} >
-            <AddItemModal closed={closeShowModalHandler} />
+            <AddItemModal closed={closeShowModalHandler}/>
         </Modal>
     }
 
