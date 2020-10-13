@@ -5,14 +5,14 @@ import axios from '../../../axios-orders';
 import withErrorHendler from '../../../hoc/withErrorHandler/withErrorHandler';
 
 
-import Item from './Item/Item';
+import Item from '../ItemList/Item/Item';
 import Spinner from '../../UI/Spinner/Spinner';
 import * as actions from '../../../store/actions/index';
 
-import classes from './ItemList.module.css';
+import classes from './PurchasedItems.module.css';
 
 
-const ItemList = props => {
+const PurchasedItems = props => {
 
     const [itemList, setItemList] = useState(null);
  
@@ -23,7 +23,7 @@ const ItemList = props => {
             .then(res => {             
                 const fetchedList = []   
                 for(let key in res.data){
-                    if(!res.data[key].purchased){
+                    if(res.data[key].purchased){
                         fetchedList.push({
                             ...res.data[key],
                             id:key
@@ -90,7 +90,6 @@ const ItemList = props => {
                 </ul>
             </section>
             
-            
         ))
     }
     
@@ -118,4 +117,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHendler(ItemList, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHendler(PurchasedItems, axios));

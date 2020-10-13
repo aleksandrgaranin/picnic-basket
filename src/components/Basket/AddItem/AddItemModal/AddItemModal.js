@@ -98,7 +98,7 @@ const AddItemModal = props => {
             //     dispatch(fetchIngredientsFailed(error));
             // });
             
-        console.log("ItemFormData",item)    
+        console.log("ItemFormData", item)    
         
     }    
 

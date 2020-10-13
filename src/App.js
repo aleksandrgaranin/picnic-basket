@@ -15,6 +15,9 @@ const BasketList = React.lazy(() => {
   return import('./containers/BasketList/BasketList')
 })
 
+const PurchasedItems = React.lazy(() => {
+  return import('./components/Basket/PurchasedItems/PurchasedItems')
+})
 
 
 const App = (props) => {
@@ -35,6 +38,7 @@ const App = (props) => {
         <Switch> 
           <Route path="/logout" component={Logout}/>
           <Route path="/auth" render={(props) => <Auth {...props}/>}/>
+          <Route path="/purchased" render={(props) => <PurchasedItems {...props}/>}/>
           <Route path="/" exact component={BasketList}/>
           <Redirect to="/"/>
         </Switch>  
