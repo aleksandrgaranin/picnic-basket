@@ -5,17 +5,24 @@ import Aux from '../../hoc/Aux/Aux';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 // Basket
+import classes from './BasketList.module.css';
 
 import AddItem from '../../components/Basket/AddItem/AddItem';
 import ItemList from '../../components/Basket/ItemList/ItemList';
 
 import * as actions from '../../store/actions/index';
+import { NavLink } from 'react-router-dom';
 
 
 const BurgerBuilder = props => {
     return (            
-        <Aux>                
-            {/* <AddItem />                 */}
+        <Aux> 
+            <div className={classes.AddBackground}>
+                <NavLink to="/add"                                  
+                    className = {classes.AddButton}>
+                        Add Item
+                </NavLink>
+            </div>               
             <ItemList/>                   
         </Aux>
     );   
