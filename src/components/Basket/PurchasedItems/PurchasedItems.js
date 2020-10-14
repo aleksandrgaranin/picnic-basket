@@ -104,12 +104,15 @@ const PurchasedItems = props => {
             
         ))
     }
-    
+    let informationOrList = list
+    if (itemList && itemList.length == 0 && !loading){        
+        informationOrList  = <p style={{textAlign:'center', color:"blueviolet"}}>List is Empty </p>
+    }
    
     return (
         <div className={classes.ItemList}>
-            <p style={{textAlign:'center'}}>Product List</p>
-            {list}
+            
+            {informationOrList}
         </div>
     );
 };
