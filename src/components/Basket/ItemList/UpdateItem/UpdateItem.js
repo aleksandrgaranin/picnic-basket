@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import Input from '../../../UI/Input/Input';
 import Button from '../../../UI/Button/Button';
 import Spinner from '../../../UI/Spinner/Spinner';
-import classes from './AddItemModal.module.css';
+import classes from './UpdateItem.module.css';
 import * as actions from '../../../../store/actions/index';
 import { updateObject, checkValidity } from '../../../../shared/utility';
 import axios from '../../../../axios-orders';
 
-const AddItemModal = props => {
+const UpdateItem = props => {
     const [controls, setControls] = useState({
         name: {
             elementType: 'input',
@@ -73,16 +72,16 @@ const AddItemModal = props => {
             touched: false,            
         },
     }); 
+    
 
     const [formIsValid, setFormIsValid] = useState(false);
     const [purchased, setPurchased] = useState(false);
     const [loading, setLoading] = useState(true)
     
     useEffect(()=> {
-        console.log(props)
         setLoading(false)
     },[])
-    
+    console.log(props)
     const submitHandler = (event) => {
         event.preventDefault();
         setLoading(true);
@@ -90,15 +89,15 @@ const AddItemModal = props => {
         for (let formElementIdentifier in controls){
             ItemFormData[formElementIdentifier] = controls[formElementIdentifier].value
         }        
-        const item = {
+        const updatedItem = {
             itemData: ItemFormData,
+            purchased: props.purchased,
             userId: props.userId,
-            purchased: purchased
         }
-        axios.post('/list.json?auth=' + props.token, item)
+        axios.put(`/list/${props.match.params.id}.json?auth=` + props.token, updatedItem)
             .then(response => {      
-                // props.closed()          
                 setLoading(false);
+                console.log(response)
                 props.history.push("/")
             })
             .catch(error => {
@@ -110,11 +109,12 @@ const AddItemModal = props => {
    
 
     const inputChangedHandler = (event, controlName) => {
+        // const prevData[controlName] = props.controlName
         const updatedControls = updateObject(controls, {
             [controlName]: updateObject(controls[controlName], {
                 value: event.target.value,
                 valid: checkValidity(event.target.value, controls[controlName].validation),
-                touched: true
+                touched: props.purchased
             })
         });
         let formIsValid = true; // Over all validation
@@ -153,7 +153,7 @@ const AddItemModal = props => {
 
         return(
             <div className={classes.AddItemModal}>
-                <p>ADD ITEM</p>
+                <p>Update Item</p>
                 <form className={classes.Form} onSubmit={submitHandler} >
                     {form}
                     <Button btnType="Success" disabled={!formIsValid} >Submit</Button>
@@ -182,4 +182,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps )( AddItemModal );
+export default connect( mapStateToProps, mapDispatchToProps )( UpdateItem );

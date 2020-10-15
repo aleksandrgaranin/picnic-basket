@@ -23,7 +23,7 @@ const BurgerBuilder = props => {
                         Add Item
                 </NavLink>
             </div>               
-            <ItemList/>                   
+            <ItemList {...props}/>                   
         </Aux>
     );   
 }

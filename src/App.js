@@ -26,6 +26,12 @@ const AddItems = React.lazy(() => {
 })
 
 
+const UpdateItem = React.lazy(() => {
+  return import('./components/Basket/ItemList/UpdateItem/UpdateItem')
+})
+
+
+
 const App = (props) => {
   const {onTryAutoSignup} = props;
   useEffect(() => {
@@ -46,10 +52,12 @@ const App = (props) => {
           <Route path="/auth" render={(props) => <Auth {...props}/>}/>
           <Route path="/purchased" render={(props) => <PurchasedItems {...props}/>}/>
           <Route path="/add" render={(props) => <AddItems {...props}/>}/>
-          <Route path="/" exact component={BasketList}/>
-          <Redirect to="/"/>
+          <Route path="/updateItem/:id" render={(props) => <UpdateItem {...props}/>}/>
+          <Route path="/" exact component={BasketList} />
+          <Redirect to="/"/> 
         </Switch>  
-      )};
+      )
+    };
 
     return  (
       <div>

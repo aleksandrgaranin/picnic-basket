@@ -79,15 +79,15 @@ const PurchasedItems = props => {
             });
        
     }
-    
-    
+
+     
     let list = <Spinner />;
-    if (!loading && itemList) {        
+    if (!loading && itemList) { 
         list = itemList.map((item, index) => ( 
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>
-                        <Item                       
+                        <Item 
                             key={item.id}
                             id={item.id}
                             name={item.itemData.name}
@@ -96,7 +96,7 @@ const PurchasedItems = props => {
                             note={item.itemData.note}
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
-                            purchaseItem={purchasedHandler.bind(this, item.id, index)}                                   
+                            purchaseItem={purchasedHandler.bind(this, item.id, index)}
                         /> 
                     </li>
                 </ul>
@@ -105,7 +105,7 @@ const PurchasedItems = props => {
         ))
     }
     let informationOrList = list
-    if (itemList && itemList.length == 0 && !loading){        
+    if (itemList && itemList.length === 0 && !loading){        
         informationOrList  = <p style={{textAlign:'center', color:"blueviolet"}}>List is Empty </p>
     }
    

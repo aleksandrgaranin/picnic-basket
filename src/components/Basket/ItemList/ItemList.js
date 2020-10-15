@@ -20,7 +20,7 @@ const ItemList = props => {
    
     useEffect(() => { 
         const queryParams = '?auth=' + props.token + '&orderBy="userId"&equalTo="' + props.userId + '"'
-        
+        console.log(props)
         axios.get('/list.json'+ queryParams)
             .then(res => {             
                 const fetchedList = []   
@@ -33,13 +33,11 @@ const ItemList = props => {
                     }
                 }
                 setItemList(fetchedList)
-                setLoading(false);
-                
+                setLoading(false);                
             })
             .catch(error => {
                 setLoading(true);
-            });
-        
+            });        
     },[])
         
     const deletePostHandler =(id, index)=> {
@@ -48,8 +46,7 @@ const ItemList = props => {
             .then(response => {
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
-                setItemList(updatedItems);
-                
+                setItemList(updatedItems);                
             })
             .catch(error => {
                 setLoading(true);
@@ -82,14 +79,19 @@ const ItemList = props => {
             });
     }
     
+    const itemSelectedHandler = (id)=> {
+        props.history.push('/updateItem/' + id);
+    }
     
     let list = <Spinner />;
     if (!loading && itemList) {        
         list = itemList.map((item, index) => ( 
+            
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>
-                        <Item                       
+                        <Item      
+                            {...props}                 
                             key={item.id}
                             id={item.id}
                             name={item.itemData.name}
@@ -98,15 +100,17 @@ const ItemList = props => {
                             note={item.itemData.note}
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
-                            purchaseItem={purchasedHandler.bind(this, item.id, index)}                                   
+                            purchaseItem={purchasedHandler.bind(this, item.id, index)}
+                            updateItem={itemSelectedHandler.bind(this, item.id, )}                                   
                         /> 
                     </li>
                 </ul>
             </section>
         ))
+        console.log(itemList)
     }
     let informationOrList = list
-    if (itemList && itemList.length == 0 && !loading){        
+    if (itemList && itemList.length === 0 && !loading){        
         informationOrList  = <p style={{textAlign:'center', color:"blueviolet"}}>List is Empty </p>
     }
    
