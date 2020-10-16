@@ -16,6 +16,7 @@ const ItemList = props => {
 
     const [itemList, setItemList] = useState(null);
     const [loading, setLoading] = useState(true)
+    const [updateItem, setUpdateItem] = useState(false)
  
    
     useEffect(() => { 
@@ -79,8 +80,8 @@ const ItemList = props => {
             });
     }
     
-    const itemSelectedHandler = (id)=> {
-        props.history.push('/updateItem/' + id);
+    const itemUpdateHandler = ()=> {
+        setUpdateItem(!updateItem)
     }
     
     let list = <Spinner />;
@@ -90,8 +91,8 @@ const ItemList = props => {
             <section className={classes.IngredientList} key={item.id}>
                 <ul >  
                     <li>
-                        <Item      
-                            {...props}                 
+                            <Item    
+                            updateItem={updateItem}
                             key={item.id}
                             id={item.id}
                             name={item.itemData.name}
@@ -101,8 +102,9 @@ const ItemList = props => {
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
                             purchaseItem={purchasedHandler.bind(this, item.id, index)}
-                            updateItem={itemSelectedHandler.bind(this, item.id, )}                                   
+                            update={itemUpdateHandler}                           
                         /> 
+                                                
                     </li>
                 </ul>
             </section>

@@ -4,7 +4,7 @@ import Aux from '../../../../hoc/Aux/Aux'
 import classes from './ItemDetail.module.css';
 
 import Button from '../../../UI/Button/Button';
-import { Link } from 'react-router-dom';
+import UpdateItem from '../UpdateItem/UpdateItem';
 
 
 
@@ -24,6 +24,7 @@ const ItemDetail = props => {
             </div>
         )
     }
+    
     if(props.show){
         detail = (
             <div>
@@ -39,17 +40,24 @@ const ItemDetail = props => {
                 <hr/>
                 <div className = {classes.Buttons}>
                     <Button btnType="Warning" clicked={props.purchaseItem}> PURCHASED </Button>
-                    <Button btnType="Success" clicked={props.updateItem} {...props} >
-                        Update
-                        {/* <Link to="/updateItem/:id" id={props.id} >
-                            UPDATE
-                        </Link> */}
-                    </Button>
+                    <Button btnType="Success"  clicked ={props.update}> Update</Button>
                     <Button btnType="Danger" clicked={props.delete}> DELETE </Button>                    
                 </div>
                 <hr/>
             </div>  
         )
+    }
+
+    if (props.updateItem && props.show){
+        detail = <UpdateItem 
+                    cancel={props.update}
+                    id={props.id}
+                    price={props.price}
+                    name ={props.name}
+                    purchased ={props.purchased}
+                    quantity = {props.quantity}
+                    noteD = {props.note}
+                />
     }
     return (
         <Aux>

@@ -80,6 +80,9 @@ const PurchasedItems = props => {
        
     }
 
+    const itemSelectedHandler = (id)=> {
+        props.history.push('/updateItem/' + id);
+    }
      
     let list = <Spinner />;
     if (!loading && itemList) { 
@@ -97,6 +100,7 @@ const PurchasedItems = props => {
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
                             purchaseItem={purchasedHandler.bind(this, item.id, index)}
+                            updateItem={itemSelectedHandler.bind(this, item.id, )} 
                         /> 
                     </li>
                 </ul>

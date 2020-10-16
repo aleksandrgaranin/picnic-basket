@@ -17,7 +17,7 @@ const UpdateItem = props => {
                 type: 'name',
                 placeholder: 'Item Name'
             },
-            value: '',
+            value: props.name,
             validation: {
                 required: true,
                 minLength: 3,
@@ -32,7 +32,7 @@ const UpdateItem = props => {
                 type: 'quantity',
                 placeholder: 'Quantity'
             },
-            value: '',
+            value: props.quantity,
             validation: {
                 required: true,
                 minLength: 1,
@@ -47,7 +47,7 @@ const UpdateItem = props => {
                 type: 'price',
                 placeholder: 'Possible Price'
             },
-            value: '',
+            value: props.price,
             validation: {
                 required: true,
                 minLength: 2,
@@ -62,7 +62,7 @@ const UpdateItem = props => {
                 type: 'textarea',
                 placeholder: 'Some Notes'
             },
-            value: '',
+            value: props.note,
             validation: {
                 required: true,
                 minLength: 6,
@@ -75,13 +75,15 @@ const UpdateItem = props => {
     
 
     const [formIsValid, setFormIsValid] = useState(false);
-    const [purchased, setPurchased] = useState(false);
     const [loading, setLoading] = useState(true)
     
     useEffect(()=> {
         setLoading(false)
     },[])
-    console.log(props)
+
+    console.log(props.quantity)
+
+
     const submitHandler = (event) => {
         event.preventDefault();
         setLoading(true);
@@ -94,7 +96,7 @@ const UpdateItem = props => {
             purchased: props.purchased,
             userId: props.userId,
         }
-        axios.put(`/list/${props.match.params.id}.json?auth=` + props.token, updatedItem)
+        axios.put(`/list/${props.id}.json?auth=` + props.token, updatedItem)
             .then(response => {      
                 setLoading(false);
                 console.log(response)
@@ -109,12 +111,11 @@ const UpdateItem = props => {
    
 
     const inputChangedHandler = (event, controlName) => {
-        // const prevData[controlName] = props.controlName
         const updatedControls = updateObject(controls, {
             [controlName]: updateObject(controls[controlName], {
                 value: event.target.value,
                 valid: checkValidity(event.target.value, controls[controlName].validation),
-                touched: props.purchased
+                touched: props.purchasedD
             })
         });
         let formIsValid = true; // Over all validation
@@ -158,6 +159,7 @@ const UpdateItem = props => {
                     {form}
                     <Button btnType="Success" disabled={!formIsValid} >Submit</Button>
                 </form>                
+                    <Button btnType="Success" clicked={props.cancel} >Cancel</Button>
             </div>
         );
     
