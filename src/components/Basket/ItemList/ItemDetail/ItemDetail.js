@@ -29,7 +29,10 @@ const ItemDetail = props => {
         detail = (
             <div>
                 <div className={classes.ItemDetails}>
-                    <p style={{color:"blueviolet"}}>Name: {props.name}</p>            
+                    <p style={{color:"blueviolet"}}>Name: {props.name}</p>    
+                </div>
+                <div className={classes.ItemDetails}>
+                            
                     <p>Price: ${props.price}</p>
                     <p>Qty: {props.quantity}</p>
                 </div>

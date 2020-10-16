@@ -1,7 +1,7 @@
 .ItemDetails {
     display: flex;
     color: darkblue;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
     margin: 5px;
     padding: 5px;

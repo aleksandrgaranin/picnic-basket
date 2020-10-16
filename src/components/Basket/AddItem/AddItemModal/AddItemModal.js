@@ -152,7 +152,7 @@ const AddItemModal = props => {
 
         return(
             <div className={classes.AddItemModal}>
-                <p>ADD ITEM</p>
+                <p style={{color:"blueviolet"}}>ADD ITEM</p>
                 <form className={classes.Form} onSubmit={submitHandler} >
                     {form}
                     <Button btnType="Success" disabled={!formIsValid} >Submit</Button>
