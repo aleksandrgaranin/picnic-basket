@@ -16,7 +16,8 @@ const ItemList = props => {
 
     const [itemList, setItemList] = useState(null);
     const [loading, setLoading] = useState(true)
-    const [updateItem, setUpdateItem] = useState(false)
+    const [isChanged, setIsChanged] = useState (false)
+   
  
    
     useEffect(() => { 
@@ -34,12 +35,13 @@ const ItemList = props => {
                     }
                 }
                 setItemList(fetchedList)
-                setLoading(false);                
+                setLoading(false); 
+                setIsChanged(false)               
             })
             .catch(error => {
                 setLoading(true);
             });        
-    },[])
+    },[isChanged])
         
     const deletePostHandler =(id, index)=> {
         
@@ -73,16 +75,17 @@ const ItemList = props => {
                 const updatedItems = [...itemList]
                 updatedItems.splice(index,1);
                 setItemList(updatedItems);   
-                setLoading(false);                 
+                setLoading(false);
+                                
             })
             .catch(error => {
                 setLoading(true);
             });
     }
     
-    const itemUpdateHandler = ()=> {
-        setUpdateItem(!updateItem)
-    }
+    const isChangedHandler = () => {
+        setIsChanged(true)
+    }   
     
     let list = <Spinner />;
     if (!loading && itemList) {        
@@ -92,7 +95,6 @@ const ItemList = props => {
                 <ul >  
                     <li>
                             <Item    
-                            updateItem={updateItem}
                             key={item.id}
                             id={item.id}
                             name={item.itemData.name}
@@ -101,8 +103,8 @@ const ItemList = props => {
                             note={item.itemData.note}
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
-                            purchaseItem={purchasedHandler.bind(this, item.id, index)}
-                            update={itemUpdateHandler}                           
+                            purchaseItem={purchasedHandler.bind(this, item.id, index)} 
+                            isChanged={isChangedHandler}                                                    
                         /> 
                                                 
                     </li>

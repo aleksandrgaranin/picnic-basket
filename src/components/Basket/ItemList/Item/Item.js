@@ -10,10 +10,16 @@ import withErrorHendler from '../../../../hoc/withErrorHandler/withErrorHandler'
 
 const Item = (props) => {     
     const [showDetails, setShowDetails] = useState(false)
+    const [updateItem, setUpdateItem] = useState(false)
 
 
     const showDetatilsHandler = () => {
         setShowDetails(!showDetails)
+        setUpdateItem(false)
+    }
+
+    const itemUpdateHandler = ()=> {
+        setUpdateItem(!updateItem)
     }
 
     
@@ -24,7 +30,10 @@ const Item = (props) => {
                     key={props.id}
                     {...props}
                     show = {showDetails}
+                    updateItem={updateItem}
+                    isChanged={props.isChanged}
                     delete = {props.deletePost}
+                    update={itemUpdateHandler} 
                 />
                 <Button btnType="Success" clicked = {showDetatilsHandler}> {!showDetails ? <p>MORE DETAILS</p> : <p>LESS DETAILS</p>}</Button>      
             </div>

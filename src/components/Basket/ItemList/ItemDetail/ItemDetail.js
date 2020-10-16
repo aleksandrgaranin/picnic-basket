@@ -57,6 +57,7 @@ const ItemDetail = props => {
                     purchased ={props.purchased}
                     quantity = {props.quantity}
                     note = {props.note}
+                    changed = {props.isChanged}
                 />
     }
     return (

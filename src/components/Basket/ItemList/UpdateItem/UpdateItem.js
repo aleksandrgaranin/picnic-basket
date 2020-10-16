@@ -81,7 +81,6 @@ const UpdateItem = props => {
         setLoading(false)
     },[])
 
-    console.log(props.quantity)
 
 
     const submitHandler = (event) => {
@@ -98,9 +97,10 @@ const UpdateItem = props => {
         }
         axios.put(`/list/${props.id}.json?auth=` + props.token, updatedItem)
             .then(response => {      
-                setLoading(false);
-                console.log(response)
-                props.history.push("/")
+                setLoading(false);               
+                console.log(response);
+                props.changed()
+                props.cancel();
             })
             .catch(error => {
                 setLoading(true);
