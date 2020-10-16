@@ -1,5 +1,4 @@
 .AddItemModal {
-    margin: auto;
     
     width: auto;
     text-align: center;   
@@ -12,8 +11,3 @@
     flex-flow: column;
 }
 
-@media (min-width: 600px) {
-    .AddItemModal {
-        width: 30rem;
-    }
-}

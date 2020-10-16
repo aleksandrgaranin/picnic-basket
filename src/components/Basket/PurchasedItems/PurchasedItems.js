@@ -16,6 +16,8 @@ const PurchasedItems = props => {
 
     const [itemList, setItemList] = useState(null);
     const [loading, setLoading] = useState(true)
+
+    const [isChanged, setIsChanged] = useState (false)
  
    
     useEffect(() => { 
@@ -33,11 +35,12 @@ const PurchasedItems = props => {
                 }
                 setItemList(fetchedList)
                 setLoading(false);
+                setIsChanged(false)    
             })
             .catch(error => {
                 setLoading(true);
             });
-    },[])
+    },[isChanged])
 
     const deletePostHandler = (id, index)=> {
         setLoading(true);
@@ -80,10 +83,10 @@ const PurchasedItems = props => {
        
     }
 
-    const itemSelectedHandler = (id)=> {
-        props.history.push('/updateItem/' + id);
-    }
-     
+    const isChangedHandler = () => {
+        setIsChanged(true)
+    }   
+
     let list = <Spinner />;
     if (!loading && itemList) { 
         list = itemList.map((item, index) => ( 
@@ -100,7 +103,7 @@ const PurchasedItems = props => {
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
                             purchaseItem={purchasedHandler.bind(this, item.id, index)}
-                            updateItem={itemSelectedHandler.bind(this, item.id, )} 
+                            isChanged={isChangedHandler}   
                         /> 
                     </li>
                 </ul>

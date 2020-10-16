@@ -40,7 +40,7 @@ const ItemDetail = props => {
                 <hr/>
                 <div className = {classes.Buttons}>
                     <Button btnType="Warning" clicked={props.purchaseItem}> PURCHASED </Button>
-                    <Button btnType="Success"  clicked ={props.update}> Update</Button>
+                    <Button btnType="Success"  clicked ={props.update}>UPDATE</Button>
                     <Button btnType="Danger" clicked={props.delete}> DELETE </Button>                    
                 </div>
                 <hr/>

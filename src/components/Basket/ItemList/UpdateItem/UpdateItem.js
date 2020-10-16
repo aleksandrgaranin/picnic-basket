@@ -98,7 +98,6 @@ const UpdateItem = props => {
         axios.put(`/list/${props.id}.json?auth=` + props.token, updatedItem)
             .then(response => {      
                 setLoading(false);               
-                console.log(response);
                 props.changed()
                 props.cancel();
             })
@@ -158,7 +157,8 @@ const UpdateItem = props => {
                 <form className={classes.Form} onSubmit={submitHandler} >
                     {form}
                     <Button btnType="Success" disabled={!formIsValid} >Submit</Button>
-                </form>                
+                </form> 
+                    <hr/>               
                     <Button btnType="Danger" clicked={props.cancel} >Cancel</Button>
             </div>
         );

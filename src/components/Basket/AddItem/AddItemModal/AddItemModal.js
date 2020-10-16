@@ -79,7 +79,6 @@ const AddItemModal = props => {
     const [loading, setLoading] = useState(true)
     
     useEffect(()=> {
-        console.log(props)
         setLoading(false)
     },[])
     

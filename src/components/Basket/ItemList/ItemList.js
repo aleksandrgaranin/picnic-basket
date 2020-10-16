@@ -16,13 +16,12 @@ const ItemList = props => {
 
     const [itemList, setItemList] = useState(null);
     const [loading, setLoading] = useState(true)
+
     const [isChanged, setIsChanged] = useState (false)
-   
- 
+    
    
     useEffect(() => { 
         const queryParams = '?auth=' + props.token + '&orderBy="userId"&equalTo="' + props.userId + '"'
-        console.log(props)
         axios.get('/list.json'+ queryParams)
             .then(res => {             
                 const fetchedList = []   
@@ -111,7 +110,6 @@ const ItemList = props => {
                 </ul>
             </section>
         ))
-        console.log(itemList)
     }
     let informationOrList = list
     if (itemList && itemList.length === 0 && !loading){        

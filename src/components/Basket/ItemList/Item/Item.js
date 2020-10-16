@@ -34,7 +34,7 @@ const Item = (props) => {
                     isChanged={props.isChanged}
                     delete = {props.deletePost}
                     update={itemUpdateHandler} 
-                />
+                />                
                 <Button btnType="Success" clicked = {showDetatilsHandler}> {!showDetails ? <p>MORE DETAILS</p> : <p>LESS DETAILS</p>}</Button>      
             </div>
         </Aux >
