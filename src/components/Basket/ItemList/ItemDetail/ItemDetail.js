@@ -24,7 +24,7 @@ const ItemDetail = props => {
             </div>
         )
     }
-    
+
     if(props.show){
         detail = (
             <div>
@@ -56,7 +56,7 @@ const ItemDetail = props => {
                     name ={props.name}
                     purchased ={props.purchased}
                     quantity = {props.quantity}
-                    noteD = {props.note}
+                    note = {props.note}
                 />
     }
     return (

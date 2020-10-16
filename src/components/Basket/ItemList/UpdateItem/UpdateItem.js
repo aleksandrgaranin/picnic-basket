@@ -23,8 +23,8 @@ const UpdateItem = props => {
                 minLength: 3,
                 maxLength: 100
             },
-            valid: false,
-            touched: false
+            valid: true,
+            touched: true            
         },           
         quantity: {
             elementType: 'input',
@@ -38,8 +38,8 @@ const UpdateItem = props => {
                 minLength: 1,
                 maxLength: 100
             },
-            valid: false,
-            touched: false,            
+            valid: true,
+            touched: true               
         },
         price: {
             elementType: 'input',
@@ -53,8 +53,8 @@ const UpdateItem = props => {
                 minLength: 2,
                 maxLength: 100
             },
-            valid: false,
-            touched: false,            
+            valid: true,
+            touched: true                  
         },
         note: {
             elementType: 'textarea',
@@ -68,13 +68,13 @@ const UpdateItem = props => {
                 minLength: 6,
                 maxLength: 300
             },
-            valid: false,
-            touched: false,            
+            valid: true,
+            touched: true         
         },
     }); 
     
 
-    const [formIsValid, setFormIsValid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(true);
     const [loading, setLoading] = useState(true)
     
     useEffect(()=> {
@@ -115,7 +115,7 @@ const UpdateItem = props => {
             [controlName]: updateObject(controls[controlName], {
                 value: event.target.value,
                 valid: checkValidity(event.target.value, controls[controlName].validation),
-                touched: props.purchasedD
+                touched: true
             })
         });
         let formIsValid = true; // Over all validation
@@ -159,7 +159,7 @@ const UpdateItem = props => {
                     {form}
                     <Button btnType="Success" disabled={!formIsValid} >Submit</Button>
                 </form>                
-                    <Button btnType="Success" clicked={props.cancel} >Cancel</Button>
+                    <Button btnType="Danger" clicked={props.cancel} >Cancel</Button>
             </div>
         );
     
