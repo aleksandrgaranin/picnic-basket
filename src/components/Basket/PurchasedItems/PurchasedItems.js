@@ -103,19 +103,19 @@ const PurchasedItems = props => {
                             purchased={item.purchased}
                             deletePost={deletePostHandler.bind(this, item.id, index)}
                             purchaseItem={purchasedHandler.bind(this, item.id, index)}
-                            isChanged={isChangedHandler}   
-                        /> 
+                            isChanged={isChangedHandler}
+                        />
                     </li>
                 </ul>
             </section>
-            
         ))
     }
+
     let informationOrList = list
     if (itemList && itemList.length === 0 && !loading){        
         informationOrList  = <p style={{textAlign:'center', color:"blueviolet"}}>List is Empty </p>
     }
-   
+    
     return (
         <div className={classes.ItemList}>
             
@@ -140,3 +140,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHendler(PurchasedItems, axios));
+
